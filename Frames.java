@@ -115,6 +115,51 @@ m.setVisible(true); // exibe o frame
 
 
 
+public class JanelaEx1 extends JFrame {
+    private JLabel lblNome, lblIdade, lblMensagem;
+    private JTextField txtNome, txtIdade;
+
+    public JanelaEx1 () {
+        super("Primeira janela");
+        setLayout(new FlowLayout());
+
+        lblNome = new JLabel("Nome");
+        lblIdade = new JLabel("Idade");
+        lblMensagem = new JLabel();
+        txtNome = new JTextField(20);
+        txtIdade = new JTextField(3);
+
+        add(lblNome);
+        add(txtNome);
+        add(lblIdade);
+        add(txtIdade);
+        add(lblMensagem);
+
+        TrataTextField ttf = new TrataTextField();
+        txtIdade.addActionListener(ttf);
+    }
+
+    private class TrataTextField implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            if (e.getSource() == txtIdade){
+                lblMensagem.setText(txtNome.getText() + " você tem " + txtIdade.getText() + " anos de idade.");
+            }else{
+                System.exit(0);
+            }
+        }
+    }
+
+    public static void main(String args[]){
+        JanelaEx1 janela = new JanelaEx1();
+        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        janela.setSize(400, 150);
+        janela.setVisible(true);
+    }
+}
+
+
+
+
 private JLabel		lblNome, lblIdade, lblMenssagem;
 private JButton		btnOK, btnFfim;
 private JTextField 	txtNome, txtIdade;
