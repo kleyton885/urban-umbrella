@@ -159,31 +159,49 @@ public class JanelaEx1 extends JFrame {
 
 
 
+public class JanelaEx2 extends JFrame {
+    private JLabel lblNome, lblIdade, lblMensagem;
+    private JTextField txtNome, txtIdade, btnFim;
+    private JButton btnOK, btnFfim;
 
-private JLabel		lblNome, lblIdade, lblMenssagem;
-private JButton		btnOK, btnFfim;
-private JTextField 	txtNome, txtIdade;
+    public JanelaEx2(){
+        super("Segunda janela");
+        setLayout(new GridLayout(4,2));
 
-public JanelaEx2(){
-	super("Segunda janela");
-	setLayout(new GridLayout(4,2));
+        lblNome = new JLabel("Nome");
+        lblIdade = new JLabel("Idade");
+        lblMensagem = new JLabel();
+        btnOK = new JButton("OK");
+        btnFim = new JTextField(20);
+        txtIdade = new JTextField(3);
+
+        add(lblNome);
+        add(txtNome);
+        add(lblIdade);
+        add(txtIdade);
+        add(btnOK);
+        add(btnFim);
+        add(lblMensagem);
+
+        TrataBtn tBtn = new TrataBtn();
+        btnOK.addActionListener(tBtn);
+        btnFim.addActionListener(tBtn);
+    }
 	
-	lblNome		= new JLabel("Nome");
-	lblIdade	= new JLabel("Idade");
-	lblMensagem = new JLabel();
-	btnOK 		= new JButton("OK");
-	btnFim		= new JTextField(20);
-	txtIdade 	= new JTextfield(3);
-	
-	add(lblNome);
-	add(txtNome);
-	add(lblIdade);
-	add(txtIdade);
-	add(btnOK);
-	add(btnFim);
-	add(lblMensagem);
-	
-	TrataBtn tBtn = new TrataBtn();
-	btnOK.addActionListener(tBtn);
-	btnFim.addActionListener(tBtn);
+    private class TrataBtn implements ActionListener {
+        public void actionPerformed(ActionEvent e){
+            if (e.getSource() == btnOK){
+                lblMensagem.setText(txtNome.getText() + " anos de idade.");
+            }else{
+                System.exit(0);
+            }
+        }
+    }
+
+    public static void main(String args[]){
+        JanelaEx2 janela = new JanelaEx2();
+        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        janela.setSize(400,150);
+        janela.setVisible(true);
+    }
 }
